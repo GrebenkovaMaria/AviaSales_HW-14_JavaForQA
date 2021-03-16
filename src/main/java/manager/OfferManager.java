@@ -3,6 +3,7 @@ import domain.Offer;
 import repository.OfferRepository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 
 public class OfferManager  {
@@ -13,7 +14,7 @@ public class OfferManager  {
     }
 
 
-    public Offer[] findByAirport(String to, String from) {
+    public Offer[] findByAirport(String to, String from, Comparator<Offer> comparator) {
         Offer[] result = new Offer[0];
         for (Offer offer : repository.findAll()) {
             if (offer.getTo().equals(to) & offer.getFrom().equals(from)) {
@@ -23,7 +24,7 @@ public class OfferManager  {
                 result = tmp;
             }
         }
-        Arrays.sort(result);
+        Arrays.sort(result, comparator);
         return result;
     }
 

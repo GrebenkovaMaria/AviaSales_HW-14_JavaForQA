@@ -9,11 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OfferManagerTest {
     OfferManager manager = new OfferManager();
+    TicketByPriceAscComparator comparator = new TicketByPriceAscComparator();
     Offer offerFirst = new Offer(1, 30000, "DME", "ACD", 12);
     Offer offerSecond = new Offer(2,10000, "DME", "AGP", 4);
     Offer offerThird = new Offer(3, 15000, "AGP", "DME", 5);
     Offer offerForth = new Offer(4, 50000, "AWN", "DME", 20);
-    Offer offerFifth = new Offer(5, 44000, "DME", "AWN", 20);
+    Offer offerFifth = new Offer(5, 44000, "DME", "AWN", 21);
     Offer offerSixth = new Offer(6, 99000, "DME", "AWN", 20);
     Offer offerSeventh = new Offer(7, 36000, "DME", "DJB", 12);
     Offer offerEighth = new Offer(8, 15000, "DJB", "AWN", 6);
@@ -39,8 +40,8 @@ class OfferManagerTest {
 
     @Test
     public void shouldFindbyToAndFromAndSortByPrice() {
-        Offer[] expected = {offerFifth, offerNineth, offerSixth};
-        Offer[] actual = manager.findByAirport("AWN", "DME");
+        Offer[] expected = {offerSixth,offerNineth,offerFifth};
+        Offer[] actual = manager.findByAirport("AWN", "DME", comparator);
         assertArrayEquals(expected, actual);
     }
 }
